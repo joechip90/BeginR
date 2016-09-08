@@ -1,0 +1,241 @@
+---
+title: "BeginR: Getting Started"
+author: "Joseph Chipperfield"
+date: "Tuesday, September 06, 2016"
+output: html_document
+---
+
+```{r DocSetup, echo = FALSE, results = "hide"}
+# Load the relevant packages
+library(knitr)
+opts_knit$set(
+  base.url = "https://dl.dropboxusercontent.com/u/4451494/WordpressImages/BeginR_GettingStarted/",
+  base.dir = "C:/Users/Joseph Chipperfield/Dropbox/Public/WordpressImages/BeginR_GettingStarted/"
+)
+```
+
+## The journey begins
+
+You've probably heard something about R from your professors, your friends, your colleagues.  Maybe you've heard about this magical software that will make all your data management and analysis easier.  Maybe you've heard about it from the curses issuing from people trying to learn how to use it.  Whatever you've been hearing about it, you've been finding that it is being talked about more and more.  It doesn't seem to be going away.
+
+I think R is great.  Used effectively if can be one of your greatest research tools, able to automate analyses that find yourself needing to repeat over and over again, create publication-quality figures, and sort and clean raw your raw data.  It does however have the reputation of being difficult to learn and its command-line interface can indeed be intimidating for those who are used to other statistical software packages with point-and-click interfaces.  But with just a little investment, you too can be reaping the benefits of this extensive, powerful, and free software.  Over the coming weeks I will be releasing a series of R blog posts for the absolute R beginner.  These posts will introduce a new concept each week and will all carry the 'BeginR' tag so they can be found easily.
+
+## What is R?
+
+R often gets called 'statistical software' and, whilst this is true, it is also so much more than that.  Yes R can run almost any statistical analysis that you can think of, but these statistical analyses are run as text commands as part of a fully-featured programming language.  This means that, once you have learnt how to program in R, you have the same tools at your disposal that any computer programmer has when they program a computer.  I often refer to R as a 'statistical platform' because not only does it give the statistical tools but it provides a programming interface to access those tools.
+
+R is built up around a series of things called 'packages'.  When R is first installed it comes with a number of standard packages that provides access to some of the most commonly used statistics, some commands for plotting your data, and the a whole suite of programming functionality.  However, once you really start getting into R then it won't be long before you feel the need to expand to supplement the features contained in the base distribution of R with pacakges that others have created.  This is where the true power of R really lies: if R does not natively support the type of analysis you want to do then, unless you are trying to do something very unique, it is likely that somebody somewhere will have written a package that will enable R to perform the analysis that you want to do.  There is a very active community of programmers expanding the functionality of R and maintaining the packages in a series on online repositories, the most comprehensive of which is the official R pacakage repository, [The Comprehensive R Archive Network](https://cran.r-project.org), or CRAN for short.
+
+So then what is R?  Well, it is the software that processes and interprets your commands, it the programming language that your commands reside within, and it is the community of programmers that contribute and maintain packages.  R is therefore a big beast and the aim of these guides is to try and break it down for you.
+
+## Why use R?
+
+So you've heard that R takes some investment to learn.  Maybe you've already spent a long time learning other statistical software and the prospect of learning another leaves you feeling cold.  There are however a large number of very good reasons why you should take the plunge.  Here's just a small selection of these reasons for why learning R is good for you:
+
+* __R has a large community:__ R has a huge user base.  There are numerous sources of information on R including the [R-help mailing list](https://stat.ethz.ch/mailman/listinfo/r-help), the [R subgroup on Stack Overflow](http://stackoverflow.com/questions/tagged/r), alongside numerous tricks published on numerous blogs (see [R-bloggers](https://www.r-bloggers.com) for an aggregation of these).  If you work or study at a college or university then there is also a very good chance that there are dedicated R courses available to you to take.
+* __R is comprehensive:__ Because R has such a large community of developers, the range and depth of the number of packages is extensive.  For almost any statistical analysis you can think of, there will be an R package somewhere that implements it.
+* __R is open source:__ This means that everyone can see the code that R is programmed in.  Anyone can investigate the code and detect any bugs or offer any new features.  For the scientific community this is [very important](http://www.nature.com/nature/journal/v482/n7386/full/nature10836.html) as, by ensuring that all aspects of the analysis code is visible, we ensure that our results are repeatable and verifiable.
+* __R is reproducable:__ When you program in R you are not only performing your data extraction, manipulation, and analysis, but by saving these commands in a script you are also documenting the exact steps that you have followed. No longer do you need to make multiple data files, each with different forms of 'data cleaning' applied along with extensive notes detailing the cleaning process, you simply need to have one raw data file and a script describing how to manipulate it.  This also means that anyone trying to replicate your findings only needs to read your script in order to reproduce your outputs.
+* __R is free:__ Freedom comes in two flavours: freedom to use and distribute a program and freedom in terms of monetary cost.  The so-called [gratis versus libre](https://en.wikipedia.org/wiki/Gratis_versus_libre) distinction.
+	+ _No fees:_ The base distribution of R and nearly all of its attendant packages will cost you nothing to use.  Whilst some developers have produced commercial user-interfaces for R, and in principle, proprietory packages could be developed, the base distribution of R and all pacakges on [CRAN](https://cran.r-project.org) are fee-free and will continue to remain so for the forseeable future.
+	+ _Free to modify:_ Because R is open source it means that it becomes possible for people to download its source code and modify it.  This makes it easy for anyone to add functionality to R by creating their own packages and functions.  This freedom has been what has resulted in the rapid expansion of the number of R packages available in the last decade.
+* __R works on many operating systems:__ R works on Macs, Windows and a wide variety of UNIX and Linux platforms and R scripts produced and run on one platform will (with the exception of just a few cases) run on other platforms too.  This way you can be sure that if you perform an analysis on your Windows PC, that your Mac-using collaborator will also be able to run the analysis and retrieve the same results.
+
+These points are just some of the reasons why familarity with R is now starting to become a highly sought-after skill.  R is rapidly becoming the [language of choice](http://www.nytimes.com/2009/01/07/technology/business-computing/07program.html?pagewanted=all) for data analysts in many fields.
+
+## Installing R and an interface
+
+The installation files for R can be found on the [R project website](https://www.r-project.org/).  Once you click on the 'download R' link you will be asked to select a webserver to download it from (choose a mirror near your current location for the best download speeds).  You will then be taken to the relevant webserver's download website where you will be presented with the installation instructions for each different operating system.  Select the link appropriate for your operating system: if you are running a Mac OS or Windows operating system then, as a beginner, you will want the 'binary' file corresponding to the latest version of R (the website will guide you towards this link, usally with the phrase 'this is what you want if you're installing R for the first time').
+
+R, at its core, is a termainal-driven programming environment.  What this means is that, once R is installed, you could open up a command prompt in Windows or a terminal on Mac OS/UNIX/Linux and type in the path to the location of the R executable file.  This would initialise the R environment.  You would see a little welcome message telling you about the version of R you are using and then you would be left a prompt waiting for you to start typing commands into it.  This would look something like this:
+
+```{r TerminalR, out.width = 400, fig.retina = NULL, echo = FALSE}
+knitr::include_graphics("TerminalR.gif")
+```
+
+Now there would be nothing to stop you from working away in R using this terminal-based implementation of R.  However, most users use R within some visualisation software that provides some clickable buttons and menus to make many of the common tasks a little bit easier.  Both the Mac and Windows installation binaries come with one of these so-called 'Integrated Development Environments' (IDEs) for R.  In Windows this can be found by simply clicking on the relevant entry in the start menu whereas on Mac you can find it in your application folder.  If you load the Windows IDE application you will be greeted by something looking a little like this:
+
+```{r WindowsGUIR, out.width = 600, fig.retina = NULL, echo = FALSE}
+knitr::include_graphics("WindowsGUIR.gif")
+```
+
+whereas the Mac OS default IDE would look something like this:
+
+```{r MacGUIR, out.width = 400, fig.retina = NULL, echo = FALSE}
+knitr::include_graphics("MacGUIR.gif")
+```
+
+However, these default IDEs are by no means the only IDEs available for R.  Other popular IDEs include [RStudio](https://www.rstudio.com), [Tinn-R](https://sourceforge.net/projects/tinn-r), and [RKWard](https://rkward.kde.org).  There are also a number of fully-fledged 'Graphical User Interfaces' (GUIs) for R such as [Rcmdr](http://www.rcommander.com) and [deducer](http://www.deducer.org) (these lists are not exhaustive); these GUIs provide a richer graphical experience for R where many of the common statistical analyses have streamlined point-and-click interfaces and reduce the need for coding.  Once you know some of the R basics you should feel free to experiment with these different interfaces and find the one the suits you best.  However, for the beginner, I feel that starting with one of the IDEs works better than starting with one of the GUIs.  GUIs encourage approaching analyses with a point-and-click mindset and, given that the strengths of R are its scripting capabilities for the repeatability and automation of analyses, I think it is better to get stuck into the underlying code early on.
+
+For this series of introductory lessons any screenshots will be from the [RStudio](https://www.rstudio.com) IDE.  RStudio works on multiple operating systems and, as such provides, a consistent interface and makes teaching easier when there are people using differnet computer systems.  Any descriptions of the commands will be similar between the IDEs/GUIs however, so don't feel that you need to use [RStudio](https://wwww.rstudio.com) to be able to follow the exercises: nearly all the exercises will be referring to the R code itself and this will not change between IDEs/GUIs.  In the few instances that we will refer to the IDE menus then there will almost certainly be similarly-phrased entries in your IDE menus too.
+
+## A first taste of R
+
+### Entering commands into the console
+
+Okay, enough talk.  Lets get stuck in!  If you load up [RStudio](https://www.rstudio.com) then you will be presented with the following, rather daunting screen:
+
+```{r RStudio, out.width = 600, fig.retina = NULL, echo = FALSE}
+knitr::include_graphics("RStudio.gif")
+```
+
+Regardless of the IDE/GUI you are using there will be one window entitled 'R Console', 'R Terminal', or something similar.  This is the active R session and it is in this window that you can type R commands for them to be processed by R.  For example we can type the following command into the R console:
+
+```{r helloWorldInput, echo = TRUE, results = "hide"}
+cat("Hello world!\n")
+```
+
+Once you type the above command and press return then you will be presented with the following output:
+
+```{r helloWorldOutput, echo = FALSE, comment = NA}
+cat("Hello world!\n")
+```
+
+You can also use R to do arithmetic.  It we ask R to calculate the result of the expression 4 + 2:
+
+```{r SimpleCalcInput, echo = TRUE, results = "hide"}
+4 + 2
+```
+
+then we get the following output:
+
+```{r SimpleCalcOutput, echo = FALSE, comment = NA}
+4 + 2
+```
+
+As you can see R returns the correct result of 6.  Ignore the number in the square brackets for now, we will return to what that means when we talk about vectors next week.
+
+R is insensitive to white space in the commands so
+
+```{r SimpleCalcInput_Ex1, echo = TRUE, results = "hide"}
+4 + 2
+```
+
+is interpreted the same as
+
+```{r SimpleCalcInput_Ex2, echo = TRUE, results = "hide"}
+4+2
+```
+
+and both will give you the correct answer of 6.  You can even span multiple lines in R code
+
+```{r SimpleCalcInput_Ex3, echo = TRUE, results = "hide"}
+4 +
+2
+```
+
+You will notice that after you had entered the first line of code into the console that the prompt changed from a '>' to a '+'.  This means that R has noticed the equation is not complete and is waiting for further input from you before it will process the command.  It you had made a mistake and didn't mean to continue the command, then you press the escape key to return R back to its normal state with the '>' prompt.  However, be careful when doing this because if the first line can be interpreted as a complete command then R will process it accordingly and then treat the next line as whole new command.  For example, the following command:
+
+```{r SimpleCalcInput_Ex4, echo = TRUE, results = "hide"}
+4
++2
+```
+
+would give you the following two sets of output:
+
+```{r SimpleCalcInput_Ex5, echo = FALSE, comment = NA}
+4
++2
+```
+
+rather than the single result you were expecting.
+
+### Plotting graphs in R
+
+R has a huge capacity for creating various types of figures.  R's full graphical functionality could have a course all of its own: indeed there are books devoted to exploring this functionality (see Hadly Wickham's [ggplot2 book](http://www.springer.com/us/book/9780387981413) and Paul Murrell's [R Graphics book](https://www.crcpress.com/R-Graphics-Second-Edition/Murrell/p/book/9781439831762) for more information on this subject) and we will return to creating figures in R at a later date to learn more about the graphical options available to us.  For now however, we'll start by plotting a simple line graph.  Here is one example of a figure created using R:
+
+```{r SimplePlot, out.width = 600, fig.retina = NULL, comment = NA}
+plot(1:10, exp(1:10), type = "l", xlab = "Days learning R", ylab = "How awesome I am")
+```
+
+You'll notice that this graph is plotted in a special plotting window; depending on which IDE/GUI you are using, this window may be either a newly opened window or a panel reserved for graphical output.  All R IDEs/GUIs will provide some way of exporting your plot.  In R studio these plot export options are offered in the 'export' menu of the graphical output panel.  These are not the only ways to export your figures.  R offers a number of ways of saving your figures directly to a file (we will learn about these at a later date).
+
+### Variables
+
+The last coding concept that we will talk about today is the notion of *variables*.  These represent ways in which we can store the results of a command to use in later parts of the code.  In R, we assign variables values by the use of the assignment command '<-'.  So for example, we could create a new variable and call it 'myFirstVariable'.  We could then then store the results of the evaluation of the expression '4 + 2' by issuing the following to the R console:
+
+```{r FirstVariable_Ex1, echo = TRUE, comment = NA}
+myFirstVariable <- 4 + 2
+```
+
+We can, at any time, investigate the current value stored in the variable by simply typing its name into the R console:
+
+```{r FirstVariable_Ex2, echo = TRUE, comment = NA}
+myFirstVariable
+```
+
+We can also overwrite the value stored in 'myFirstVariable' at any time.  So we could instead set 'myFirstVariable' to store the value 8:
+
+```{r FirstVariable_Ex3, echo = TRUE, comment = NA}
+myFirstVariable <- 8
+```
+
+We can also use the variable in any arithmetic:
+
+```{r FirstVariable_Ex4, echo = TRUE, comment = NA}
+myFirstVariable - 2
+```
+
+R gives you a lot of freedom in how you name your variables.  You may use any alphabetic or numeric characters plus the underscore '_' and period '.' characters in the name of the variable.  There is one restriction that the first character in the variable name must not be a number.  So '1stVariable' would not be a valid variable name but 'my1stVariable' would be.
+
+Variables come in a lot of different types and we will discuss these different types over the comming weeks.
+
+### Saving and restoring your work
+
+So you've created some variables that contain some important information that you want to keep.  There are a number of different ways you can store this information in R and we will go over some of these when we talk about the different types of variables in later weeks.  For now however we will use the [save](https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html) function of R to store our variables in a special type of file that R can understand: an R data file.  Firstly we will create two variables that we want to store:
+
+```{r SavingVariables_Ex1, echo = TRUE, comment = NA}
+myFirstVariable <- 4
+mySecondVariable <- myFirstVariable + 2
+```
+
+Then we will use the [save](https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html) function to store them.  To use the [save](https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html) function you simply type 'save(' followed by a comma-seperated sequence of names of the variables you want to store, and then the text ', file = "' followed by the location where you want the data file to be stored.  Note that when specifying file locations in R you can either use the forward slash '/' or a double backslash '\\\\' to delimit the folders in the directory structure.  For reasons that will become clear in later weeks, you cannot use the classic Windows single backslash ('\\') notation to delimit the folders.  Finally, add the text '")' to run the [save](https://stat.ethz.ch/R-manual/R-devel/library/base/html/save.html) function.  Typically we use the file suffix '.RData' to denote a file as being an R data file.  Putting this all together, we can save our variables by typing a command similar to the following in the R console:
+
+```{r SavingVariables_Ex2, eval = FALSE, echo = TRUE, comment = NA}
+save(myFirstVariable, mySecondVariable, file = "location/to/store/the/file.RData")
+```
+
+Now that you've created an R data file you can now close down R without losing your newly-created variables.  If you start another R session then you can restore your variables using the [load](https://stat.ethz.ch/R-manual/R-devel/library/base/html/load.html) function by typing something similar to the following:
+
+```{r LoadingVariables_Ex1, eval = FALSE, echo = TRUE, comment = NA}
+load("location/to/store/the/file.RData")
+```
+
+Once the data file is loaded, then all the variables that were stored in that file are restored to current R session.  So we can now look at the values stored in the saved variables:
+
+```{r LoadingVariables_Ex2, echo = TRUE, comment = NA}
+myFirstVariable
+```
+
+```{r LoadingVariables_Ex3, echo = TRUE, comment = NA}
+mySecondVariable
+```
+
+### Writing R scripts
+
+Whilst typing commands directly into the console produces the results we want, this is not typically how R programmers work.  They normally write their sequence of commands down in what we call a script.  This allows them to save the sequence of commands that they have used so that they can add to it at a later date.  It also serves as a record of the exact way that they performed an analysis. All R IDEs/GUIs will have the option of creating a script: in RStudio this can be found in the 'New Script' option under the 'New File' submenu of the 'File' main menu.  If you click on this opion then you will see a little text editor panel appear.  When working with R the common convention is to type your commands into this text editor instead of typing directly into the console.  When you type your commands into the text editor these commands are not immediately run by R.  R Studio offers many way to run the code from the text editor.  The simplest is to select the sequence of commands that you want to run and then clicking on the 'Code' menu and then the 'Run Selected Line(s)' option.  At any point you can save your script by clicking on 'File' and 'Save'.  This will save your script as a plain text file that can be opened not just by the R IDEs/GUIs but also by any [text editor](https://en.wikipedia.org/wiki/Text_editor) such as [Notepad](https://en.wikipedia.org/wiki/Microsoft_Notepad) on Windows, [TextEdit](https://en.wikipedia.org/wiki/TextEdit) on Mac, or [GEdit](https://en.wikipedia.org/wiki/Gedit) on Linux.  Typically we use the '.R' file suffix to denote the fact that the contents of the file contains R code.
+
+Because the script is designed to be a record of the sequence of commands that you are running, it is often useful to add comments to the code so that, at a later date, you can look through your code and follow what it is trying to do.  Comments in R are denoted by the '\#' notation.  When the R interpeter finds a '\#' symbol then it ignores all the text to the right of it until the end of the line.  You can use this behaviour to add comments to your script.  For example if we wanted to create a commented version of today's script then we could create the following script file:
+
+```{r BeginR_GettingStarted_Import, echo = FALSE, results = "hide"}
+read_chunk("BeginR_GettingStarted.R")
+```
+```{r CreatingScript, echo = TRUE, eval = FALSE}
+<<BeginR_GettingStarted_PartOne>>
+  
+# This line will save the content of these variable to an R data file
+# Change the 'file = ' entry to a location where you would like to store the file
+save(myFirstVariable, mySecondVariable, file = "location/to/store/the/file.RData")
+
+# This line will load the information in the R data file that we have just created
+# Change the 'file = ' entry to the location where you have stored the data file
+load("location/to/store/the/file.RData")
+
+<<BeginR_GettingStarted_PartTwo>>
+```
+
+Commenting your R code can often feel like a chore but you should get into the habit of doing it.  Not only does it help anyone else who might be looking through your R code figure out what it is supposed to do and how it is supposed to do it but it also can help you too.  It is very common to have to return to analyses that you may have performed months or even years ago.  Comments can provide a very useful way for your future self to get back up to speed and remind yourself how certain analyses were performed.  Your furture self will thank you for the extra investment.
+
+### Final words
+
+Today we have learnt a little bit about what R is and how to get up and running with it.  We've had our first taste of running commands in the R console and have been introduced to the notion of variables.  We've also learnt how to save our variables in R data files and how to store our R code in R scripts.  Over the coming weeks we will learn more about the different types of variables that R supports and how to use them to store, manipulate, and analyse your data.
